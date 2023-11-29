@@ -12,8 +12,7 @@ let alunos = [
     { nome: "zacaraste", email: "zacaraste@hotmail.com", telefone: 21944488576, profissao: "frontend" },
     { nome: "obivio", email: "obvio@gmail.com", telefone: 2173484973, profissao: "frontend" },
     { nome: "notielk", email: "notielk@msn.com", telefone: 21975584073, profissao: "frontend" },
-    { nome: "notielk", email: "notielk@msn.com", telefone: 21975584073, profissao: "frontend" },
-  
+    
 ];
 
 
