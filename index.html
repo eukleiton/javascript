@@ -6,7 +6,7 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Javascript</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='javascript\style\main.css'>
     <script src='./js/main.js'></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -16,15 +16,21 @@
 <body>
 
     <header>
-        <nav id="nav">
-            <a href="#">Cadastro de aluno</a>
-        </nav>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand">Cadastro De Alunos</a>
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Digite o Nome" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Procurar</button>
+              </form>
+            </div>
+          </nav>
     </header>
-
+<hr>
 
     <section id="table">
 
-        <form action="">
+        <center><form action="">
 
             <div class="mb-3">
                 <label class="form-label" for="nome">
@@ -61,14 +67,14 @@
 
             
 
-            <button type="submit" class="btn btn-outline-success"> Adicionar</button>
+            <button type="submit" class="btn btn-outline-success" onclick=adicionar()> Adicionar</button>
             <button type="submit" class="btn btn-outline-primary"> Iniciar Grafico piczza</button>
 
-        </form>
+        </form></center>
         <hr>
 
-        <table id="myTable" class="table table-dark table-hover" border="1">
-            <tr>
+        <table id="myTable" class="table table-bordered border-primary" border="1">
+            <tr id="0">
                 <th>cod</th>
                 <th>nome</th>
                 <th>email</th>
