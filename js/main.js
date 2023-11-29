@@ -42,7 +42,7 @@ tr.id = index+1;
     tr.appendChild(tdTelefone);
     tr.appendChild(tdProfissao);
     tr.appendChild(tdBotao);
-
+    tr.style.backgroundColor = "lightcyan";
     tbody.appendChild(tr);
 
 
