@@ -37,6 +37,9 @@ const calcularImc = () => {
         resultado.textContent = 
         'preencha todos os campos';
     }
+
+    limparCampos();
+
 };
 
 
@@ -49,13 +52,13 @@ const limparCampos = () => {
 };
 
 const mascaraAltura = (value, pattern) => {
-    let i = 0;
-    let v = value.tostring();
+    let i = 0;  // Corrigindo a inicialização de i
+    let v = String(value);  // Corrigindo a obtenção da representação de string
     v = v.replace(/\D/g, '');
-    return pattern.replace(/#/g, () => v[i++] || '');
+    return pattern.replace(/#/g, () => v[i++] || '');  // Corrigindo a chamada de replace
 };
 
 const aplicar = (value) => {
     const formatado = mascaraAltura(value, '#.##');
     document.getElementById('altura').value = formatado;
-}
+};
