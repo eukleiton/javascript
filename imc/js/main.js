@@ -51,6 +51,11 @@ const limparCampos = () => {
 const mascaraAltura = (value, pattern) => {
     let i = 0;
     let v = value.tostring();
-    v = v.replace(/\0/g, '');
-    return pattern.replace()
+    v = v.replace(/\D/g, '');
+    return pattern.replace(/#/g, () => v[i++] || '');
 };
+
+const aplicar = (value) => {
+    const formatado = mascaraAltura(value, '#.##');
+    document.getElementById('altura').value = formatado;
+}

@@ -100,7 +100,8 @@
         <input type="text" id="peso">
 
         <label for="altura">Altura</label>
-        <input type="text" id="altura">
+        <input type="text" id="altura" maxlength="4"
+        onkeypress="aplicar(altura.value)">
 
         <button type="button" onclick="calcularImc()">Calcular
         </button>
