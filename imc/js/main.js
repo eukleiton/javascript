@@ -47,3 +47,10 @@ const limparCampos = () => {
     const peso = document.getElementById("peso").value = null;
     
 };
+
+const mascaraAltura = (value, pattern) => {
+    let i = 0;
+    let v = value.tostring();
+    v = v.replace(/\0/g, '');
+    return pattern.replace()
+};
