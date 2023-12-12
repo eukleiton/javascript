@@ -1,67 +1,82 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // pegando a div com id="data-container"
-   const dataContainer = 
-        document.getElementById('data-container'); 
-    
-    // funcao para lidar com erros nas solicitacoes fetch
-    const handlerErrors = (response) => {
-        if(!response.ok){
-            throw Error(response.statusText);
-        }
-        return response;
-    };
-    // funcao para buscar e exibir dados da API 
-    const fetchData = async () => {
-        try {
-            // fazendo uma requisicao GET para obter produtos da API
-            const response = 
-                await fetch('http://localhost:3000/jogos');
+import { getAllGames } from "./service";
 
-            // lidando com erros na resposta 
-            handlerErrors(response);
+var URL = 'http://localhost:3000/jogos';
 
-            // convertendo a resposta para JSON
-            const data = await response.json();
+window.onload = () => {
+    loadGames();
+};
 
-            // exibindo os dados na pagina HTML
-            data.forEach(jogo => {
-                const tagDiv = 
-                    document.createElement('div');
-                        tagDiv.innerHTML = `<strong> ${jogo.nome} </strong> <p> ${jogo.preco} </p>`;
-
-                        dataContainer.appendChild(tagDiv);
-            });
-
-        } catch (error) {
-            console.log('Error >>>', error)
-        }
-    };
-    // chamando a funcao para buscar e ebibir os dados na tela
-    fetchData();
-});
+const loadGames = () => {
+    console.log('>>>>')
+    const dataContainer = 
+        document.getElementById('data-container');
+    getAllGames().then(resp => {
+        resp.forEach(game => {
+            const gamesElement = 
+            document.createElement('div');
+            gamesElement.innerHTML = `<strong> ${game.none} </strong> <p> ${game.preco} </p>`;
+            dataContainer.appendChild(gamesElement);
+            
+        });
+    })
+};
 
 
 const createGame = () => {
     const jogoTeste = {
-        
+
         "nome": "The legend of Zelda",
         "img": "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
         "preco": 100
-        
-      };
-fetch('http://localhost:3000/jogos', {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(jogoTeste)
 
-})
-.then(response => response.json())
-.then(data => console.log('sucesso: ', data))
-.catch((error) => console.log('Erro: ', error));
+    };
+    fetch(URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jogoTeste)
+
+    })
+        .then(response => response.json())
+        .then(data => console.log('sucesso: ', data))
+        .catch((error) => console.log('Erro: ', error));
 
 
 
+
+};
+
+const deleteGame = () => {
+    const game = {
+        nome: "The legend of Zelda",
+        img: "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
+        preco: 100,
+        id: 3
+    };
+    fetch(URL + `/${game.id}`, { method: 'DELETE' })
+        .then(response => response.json())
+        .then(data => console.log('sucesso: ', data))
+        .catch((error) => console.log('Erro: ', error));
+};
+
+const updateGame = () => {
+    const game = {
+        nome: "The legend of Zelda II",
+        img: "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
+        preco: 300,
+        id: 3
+    };
+    fetch(URL + `/${game.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(game)
+
+    })
+        .then(response => response.json())
+        .then(data => console.log('sucesso: ', data))
+        .catch((error) => console.log('Erro: ', error));
 
 };
