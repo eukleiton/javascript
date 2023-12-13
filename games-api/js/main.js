@@ -1,82 +1,57 @@
-import { getAllGames } from "./service";
-
-var URL = 'http://localhost:3000/jogos';
+import { getAllGames, createGame, deleteGame, updateGame } from "./service.js";
 
 window.onload = () => {
     loadGames();
 };
-
+//refatorado
 const loadGames = () => {
-    console.log('>>>>')
+    console.log('>>>')
     const dataContainer = 
         document.getElementById('data-container');
-    getAllGames().then(resp => {
+        getAllGames().then(resp =>{
         resp.forEach(game => {
             const gamesElement = 
-            document.createElement('div');
-            gamesElement.innerHTML = `<strong> ${game.none} </strong> <p> ${game.preco} </p>`;
-            dataContainer.appendChild(gamesElement);
-            
+                document.createElement('div');
+                gamesElement.innerHTML = 
+`<strong>${game.nome}</strong><p>${game.preco}</p>`;
+             dataContainer.appendChild(gamesElement);
         });
     })
 };
 
-
-const createGame = () => {
-    const jogoTeste = {
-
+// Refatorado
+document.getElementById('btnCreate') 
+.addEventListener('click', () => {
+    const jogo = {
         "nome": "The legend of Zelda",
         "img": "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
         "preco": 100
-
     };
-    fetch(URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(jogoTeste)
+    createGame(jogo);
+}),
 
-    })
-        .then(response => response.json())
-        .then(data => console.log('sucesso: ', data))
-        .catch((error) => console.log('Erro: ', error));
-
-
-
-
-};
-
-const deleteGame = () => {
-    const game = {
-        nome: "The legend of Zelda",
-        img: "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
-        preco: 100,
-        id: 3
+// Refatorado
+document.getElementById('btnDelete')
+.addEventListener('click', () =>{
+    const jogo = {
+        "nome": "The legend of Zelda",
+        "img": "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
+        "preco": 300,
+        "id": 3
     };
-    fetch(URL + `/${game.id}`, { method: 'DELETE' })
-        .then(response => response.json())
-        .then(data => console.log('sucesso: ', data))
-        .catch((error) => console.log('Erro: ', error));
-};
+    deleteGame(jogo);
+});
 
-const updateGame = () => {
-    const game = {
-        nome: "The legend of Zelda II",
-        img: "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
-        preco: 300,
-        id: 3
+// Refatorado
+document.getElementById('btnUpdate')
+.addEventListener('click', () => {
+    const jogo = {
+        "nome": "The Legend of Zelda 2",
+        "img": "https://codetheworld.io/wp-content/uploads/2023/12/Dark-Souls.png",
+        "preco": 300,
+        "id": 3
     };
-    fetch(URL + `/${game.id}`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(game)
 
-    })
-        .then(response => response.json())
-        .then(data => console.log('sucesso: ', data))
-        .catch((error) => console.log('Erro: ', error));
+    updateGame(jogo)
+});
 
-};
